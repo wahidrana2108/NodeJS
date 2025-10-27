@@ -1,7 +1,7 @@
 const sumHandler = (req, res) => {
   const cont = [];
-  req.on('data', chuck => cont.push(chuck));
-  req.on('end', ()=>{
+  req.on("data", (chuck) => cont.push(chuck));
+  req.on("end", () => {
     const row = Buffer.concat(cont).toString();
     const param = new URLSearchParams(row);
     const data = Object.fromEntries(param);
@@ -22,8 +22,7 @@ const sumHandler = (req, res) => {
         </html>
       `);
     return res.end();
-    });
-
+  });
 };
 
 exports.sumHandler = sumHandler;

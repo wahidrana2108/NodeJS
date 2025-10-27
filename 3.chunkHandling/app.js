@@ -12,7 +12,9 @@ const server = http.createServer((req, res) => {
     res.write("<head><title>server page</title></head>");
     res.write("<body>");
     res.write('<form action="/submit-details" method="POST">');
-    res.write('<input type="text" name="username" placeholder="Enter Username"><br>');
+    res.write(
+      '<input type="text" name="username" placeholder="Enter Username"><br>'
+    );
     res.write('<label for="gender"> Gender: </label>');
     res.write('<input type="radio" id="male" name="gender" value="male">');
     res.write('<label for="male"> male </label>');
@@ -30,19 +32,18 @@ const server = http.createServer((req, res) => {
     res.write("<body><h1>this are our latest products</h1></body>");
     res.write("</html>");
     return res.end();
-  } else if (req.url.toLowerCase() === "/submit-details" && req.method == "POST") {
+  } else if (
+    req.url.toLowerCase() === "/submit-details" &&
+    req.method == "POST"
+  ) {
     //creating chunks
 
-
-    
-
     const row = [];
-    req.on('data', chunk =>{
+    req.on("data", (chunk) => {
       row.push(chunk);
     });
 
-
-    req.on('end', ()=>{
+    req.on("end", () => {
       const data = row.concat().toString();
 
       const param = new URLSearchParams(data);
@@ -55,10 +56,10 @@ const server = http.createServer((req, res) => {
 
       console.log(obj);
       fs.writeFileSync("user.txt", JSON.stringify(obj));
-    })
+    });
 
     //chunks part end
-    
+
     res.statusCode = 302;
     res.setHeader("Location", "/");
     return res.end();

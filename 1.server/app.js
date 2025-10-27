@@ -11,7 +11,9 @@ const server = http.createServer((req, res) => {
     res.write("<head><title>server page</title></head>");
     res.write("<body>");
     res.write('<form action="/submit-details" method="POST">');
-    res.write('<input type="text" name="username" placeholder="Enter Username"><br>');
+    res.write(
+      '<input type="text" name="username" placeholder="Enter Username"><br>'
+    );
     res.write('<label for="gender"> Gender: </label>');
     res.write('<input type="radio" id="male" name="gender" value="male">');
     res.write('<label for="male"> male </label>');
@@ -30,7 +32,8 @@ const server = http.createServer((req, res) => {
     res.write("</html>");
     return res.end();
   } else if (
-    req.url.toLowerCase() === "/submit-details" && req.method == "POST"
+    req.url.toLowerCase() === "/submit-details" &&
+    req.method == "POST"
   ) {
     fs.writeFileSync("user.txt", "file written successfully");
     res.statusCode = 302;
