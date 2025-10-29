@@ -8,7 +8,7 @@ const hostRouter = express.Router();
 const rootDir = require("../utils/pathUtil");
 
 hostRouter.get("/add-home", (req, res, next) => {
-  res.render('addHome', { pageTitle: '404 - Airbnb' });
+  res.render('addHome', { pageTitle: 'Add Home To Airbnb' });
 });
 
 const registeredHomes = [];
@@ -19,6 +19,8 @@ hostRouter.post("/add-home", (req, res, next) => {
     houseName: req.body.houseName,
     location: req.body.location,
     price: req.body.price,
+    description: req.body.description,
+    img: req.body.img,
   });
   console.log(registeredHomes);
 
